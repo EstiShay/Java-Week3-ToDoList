@@ -36,7 +36,7 @@ public class Sql2oCategoryDaoTest {
     }
 
     @Test
-    public void addingCourseSetsId() throws Exception {
+    public void addingCategorySetsId() throws Exception {
         Category category = setupNewCategory();
         int originalCategoryId = category.getId();
         categoryDao.add(category);
@@ -44,7 +44,7 @@ public class Sql2oCategoryDaoTest {
     }
 
     @Test
-    public void existingCategorysCanBeFoundById() throws Exception {
+    public void existingCategoriesCanBeFoundById() throws Exception {
         Category category = setupNewCategory();
         categoryDao.add(category);
         Category foundCategory = categoryDao.findById(category.getId());
@@ -90,7 +90,7 @@ public class Sql2oCategoryDaoTest {
         categoryDao.add(otherCategory);
         int daoSize = categoryDao.getAll().size();
         categoryDao.clearAllCategories();
-        assertTrue(daoSize > 0 && daoSize > categoryDao.getAll().size());
+        assertTrue(daoSize > 0 && categoryDao.getAll().size() == 0);
     }
 
     @Test

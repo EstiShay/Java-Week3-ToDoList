@@ -5,7 +5,7 @@
     {{#if tasks}}
         {{#each tasks }}
          <p>Current task:</p>
-         <p>{{ description }} <a href="/tasks/{{id}}">read more...</a></p>
+         <p>{{ description }} <a href="/categories/{{categoryId}}/tasks/{{id}}">read more...</a></p>
         {{/each}}
     {{else}}
      <p>No tasks!</p>

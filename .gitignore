@@ -59,6 +59,13 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 
+# Other things we want to ignore
+.idea/
+gradle/
+gradlew
+gradlew.bat
+
+
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 

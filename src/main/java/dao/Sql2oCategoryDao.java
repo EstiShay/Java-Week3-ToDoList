@@ -63,7 +63,7 @@ public class Sql2oCategoryDao implements CategoryDao {
 
     @Override
     public void deleteById(int id) {
-        String sql = "DELETE from categories WHERE id=:id"; //raw sql
+        String sql = "DELETE FROM categories WHERE id=:id"; //raw sql
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", id)
@@ -75,7 +75,7 @@ public class Sql2oCategoryDao implements CategoryDao {
 
     @Override
     public void clearAllCategories() {
-        String sql = "DELETE from categories"; //raw sql
+        String sql = "DELETE FROM categories"; //raw sql
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .executeUpdate();

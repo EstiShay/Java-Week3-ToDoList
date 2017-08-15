@@ -7,12 +7,14 @@ public class Task {
 
     private String description;
     private boolean completed;
+    private LocalDateTime createdAt;
     private int id;
     private int categoryId;
 
     public Task(String description, int categoryId){
         this.description = description;
         this.completed = false;
+        this.createdAt = LocalDateTime.now();
         this.categoryId = categoryId;
     }
 
@@ -50,6 +52,14 @@ public class Task {
 
     public int getId() {
         return this.id;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override

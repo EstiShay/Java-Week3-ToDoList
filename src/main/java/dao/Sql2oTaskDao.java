@@ -8,9 +8,7 @@ import org.sql2o.Sql2oException;
 import java.sql.Timestamp;
 import java.util.List;
 
-/**
- * Created by epicodus_staff on 7/18/17.
- */
+
 public class Sql2oTaskDao implements TaskDao { //implementing our interface
 
     private final Sql2o sql2o;

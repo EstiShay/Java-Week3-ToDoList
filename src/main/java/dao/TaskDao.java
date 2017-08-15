@@ -4,9 +4,7 @@ import models.Task;
 
 import java.util.List;
 
-/**
- * Created by epicodus_staff on 7/18/17.
- */
+
 public interface TaskDao {
 
     //create

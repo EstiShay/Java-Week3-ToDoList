@@ -32,7 +32,7 @@ public class Sql2oTaskDaoTest {
     }
 
     @Test
-    public void addingCourseSetsId() throws Exception {
+    public void addingTaskSetsId() throws Exception {
         Task task = setupNewTask();
         int originalTaskId = task.getId();
         taskDao.add(task);
@@ -85,7 +85,7 @@ public class Sql2oTaskDaoTest {
         taskDao.add(otherTask);
         int daoSize = taskDao.getAll().size();
         taskDao.clearAllTasks();
-        assertTrue(daoSize > 0 && daoSize > taskDao.getAll().size()); //this is a little overcomplicated, but illustrates well how we might use `assertTrue` in a different way.
+        assertTrue(daoSize > 0 && taskDao.getAll().size() == 0); //this is a little overcomplicated, but illustrates well how we might use `assertTrue` in a different way.
     }
 
     @Test
