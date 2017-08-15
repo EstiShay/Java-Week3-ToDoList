@@ -1,20 +1,28 @@
 {{#partial "content"}}
 
     {{#if editTask}}
-        <h1>Edit this Post!</h1>
-        <form action="/tasks/update" method="post">
+        <h1>Edit this task!</h1>
+        <form action="/tasks/{{editTask.id}}/update" method="post">
             <label for="description">Edit this task's description</label>
             <input id="description" name="description" type="text" value="{{editTask.description}}">
+            <label for="category">Category</label>
+            <select id="category" name="category">
+                {{#if categories}}
+                    {{#each categories}}
+                        <option value="{{id}}">{{name}}</option>
+                    {{/each}}
+                {{/if}}
+            </select>
 
     {{else}}
     <h1>Add a new Task!</h1>
 
-    <form action="/tasks/new" method="post">
+    <form action="/tasks" method="post">
         <label for="description">Task Description</label>
         <input id="description" name="description" type="text">
 
         <label for="category">Category</label>
-            <select>
+            <select id="category" name="category">
             {{#if categories}}
                 {{#each categories}}
                 <option value="{{id}}">{{name}}</option>

@@ -79,7 +79,15 @@ public class App {
         //get: show all tasks in all categories and show all categories
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
+            List<Category> allCategories = categoryDao.getAll();
+            model.put("categories", allCategories);
+            List<Task> tasks = taskDao.getAll();
+            model.put("tasks", tasks);
+            return new ModelAndView(model, "index.hbs");
+        }, new HandlebarsTemplateEngine());
 
+        get("/tasks", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
             List<Category> allCategories = categoryDao.getAll();
             model.put("categories", allCategories);
             List<Task> tasks = taskDao.getAll();
@@ -105,7 +113,7 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //post: process new task form
-        post("/tasks/new", (request, response) -> {
+        post("/tasks", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             List<Category> allCategories = categoryDao.getAll();
             model.put("categories", allCategories);
@@ -162,26 +170,27 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //get: show a form to update a task
-        get("/tasks/update", (req, res) -> {
+        get("/tasks/:id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Category> allCategories = categoryDao.getAll();
             model.put("categories", allCategories);
             List<Task> allTasks = taskDao.getAll();
             model.put("tasks", allTasks);
-            model.put("editTask", true);
+            int thisId = Integer.parseInt(req.params("id"));
+            Task editTask = taskDao.findById(thisId);
+            model.put("editTask", editTask);
             return new ModelAndView(model, "task-form.hbs");
         }, new HandlebarsTemplateEngine());
 
         //post: process a form to update a task
-        post("/tasks/update", (req, res) -> {
+        post("/tasks/:id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Category> allCategories = categoryDao.getAll();
             model.put("categories", allCategories);
 
             String newContent = req.queryParams("description");
-            int newCategoryId = Integer.parseInt(req.queryParams("categoryId"));
-            int taskToEditId = Integer.parseInt(req.queryParams("taskToEditId"));
-            Task editTask = taskDao.findById(taskToEditId);
+            int newCategoryId = Integer.parseInt(req.queryParams("category"));
+            int taskToEditId = Integer.parseInt(req.params("id"));
             taskDao.update(taskToEditId, newContent, newCategoryId);
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
